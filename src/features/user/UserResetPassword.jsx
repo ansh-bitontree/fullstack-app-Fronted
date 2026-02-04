@@ -16,13 +16,13 @@ function UserResetPassword({ onBack }) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const[serverError, setServerError] = useState("")
-  const [showPassword, setShowPassword] = useState(false);
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const togglePassword = () => setShowPassword((prev) => !prev);
 
   const handleReset = async (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ function UserResetPassword({ onBack }) {
     <form className="user_reset" onSubmit={handleReset}>
       <h2>Update Password</h2>
 
-      
+      <div className="password-block">
         <PasswordInput
           label="Current Password"
           type="password"
@@ -59,8 +59,14 @@ function UserResetPassword({ onBack }) {
           value={values.current_password}
           onChange={handleChange}
           error={errors.current_password}
-          show={showPassword}
+          show={showCurrent}
         />
+
+        <PasswordToggle
+          show={showCurrent}
+          onToggle={() => setShowCurrent(prev => !prev)}
+        />
+      </div>
 
       
 
@@ -72,7 +78,7 @@ function UserResetPassword({ onBack }) {
           value={values.new_password}
           onChange={handleChange}
           error={errors.new_password}
-          show={showPassword}
+          show={showNew}
         />
 
         <PasswordInput
@@ -82,10 +88,10 @@ function UserResetPassword({ onBack }) {
           value={values.confirm_password}
           onChange={handleChange}
           error={errors.confirm_password}
-          show={showPassword}
+          show={showNew}
         />
 
-        <PasswordToggle show={showPassword} onToggle={togglePassword} />
+        <PasswordToggle show={showNew} onToggle={() => setShowNew(prev => !prev)} />
       </div>
 
       <div className="actions">
@@ -102,3 +108,6 @@ function UserResetPassword({ onBack }) {
 }
 
 export default UserResetPassword;
+
+
+

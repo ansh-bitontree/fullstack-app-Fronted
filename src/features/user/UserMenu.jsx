@@ -4,8 +4,9 @@ import "./UserMenu.css";
 import UserResetPassword from "./UserResetPassword";
 import {validateUpdatedProfile} from "../../features/auth/validators/user.validators"
 import Input from "../../components/Input/Input";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "../../components/Button/LogoutButton";
 import { toast } from "react-toastify";
+import BackButton from "../../components/Button/BackButton";
 
 export default function UserMenu() {
   const [user, setUser] = useState(null);
@@ -86,6 +87,7 @@ export default function UserMenu() {
 
   return (
   <>
+    <BackButton />
     <LogoutButton />
     <div className="userMenu">
       {!resetMode ? (
