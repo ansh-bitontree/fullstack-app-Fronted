@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Input from "../../components/Input/Input";
 import { validateUserResetPassword } from "../auth/validators/user.validators";
 import api from "../../services/api";
 import { toast } from "react-toastify";
